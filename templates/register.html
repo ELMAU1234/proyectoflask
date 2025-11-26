@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Registro</title>
+<style>
+body{
+    background:#f1f4f9;
+    font-family:Arial;
+}
+
+#strength {
+    width: 100%;
+    background: #ddd;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#strength-bar {
+    height: 10px;
+    width: 0%;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Registrarse</h2>
+
+    <form method="POST">
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <input type="text" name="username" placeholder="Usuario" required>
+
+        <input type="password" id="password" name="password" placeholder="Contraseña" required>
+
+        <div id="strength">
+            <div id="strength-bar"></div>
+        </div>
+
+        <button class="btn">Registrar</button>
+    </form>
+
+    <p>¿Ya tienes cuenta? <a href="/login">Iniciar Sesión</a></p>
+</div>
+
+<script>
+const password = document.getElementById("password");
+const barra = document.getElementById("strength-bar");
+
+password.addEventListener("input", function() {
+    const val = password.value;
+    let nivel = 0;
+
+    if (val.length >= 8) nivel++;
+    if (/[A-Za-z]/.test(val)) nivel++;
+    if (/[0-9]/.test(val)) nivel++;
+
+    if (nivel === 0) {
+        barra.style.width = "0%";
+        barra.style.background = "transparent";
+    } else if (nivel === 1) {
+        barra.style.width = "33%";
+        barra.style.background = "red";
+    } else if (nivel === 2) {
+        barra.style.width = "66%";
+        barra.style.background = "yellow";
+    } else if (nivel === 3) {
+        barra.style.width = "100%";
+        barra.style.background = "green";
+    }
+});
+</script>
+
+</body>
+</html>

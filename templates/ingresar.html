@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingresar Vehículo</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    background: #005bbb;
+    color: white;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CONTAINER */
+.container {
+    width: 85%;
+    margin: auto;
+    padding-top: 25px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
+    margin-bottom: 25px;
+}
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #005bbb;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    margin: 5px 2px;
+    font-size: 15px;
+}
+.btn-green { background: #2e8b57; }
+.btn-blue { background: #007bff; }
+.btn-yellow { background: #d4a017; }
+.btn-red { background: #c82333; }
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+}
+</style>
+</head>
+
+<body>
+<div class="navbar">
+    <div><strong>Estacionamiento Smart</strong></div>
+    <div>
+        <a href="/">Inicio</a>
+        <a href="/ingresar">Ingresar Vehículo</a>
+        <a href="/salida">Registrar Salida</a>
+        <a href="/reportes">Reportes</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-title">Ingresar Nuevo Vehículo</div>
+
+        <form method="POST">
+
+            <label>Placa</label>
+            <input type="text" name="placa" required>
+
+            <label>Tipo de Vehículo</label>
+            <select name="tipo">
+                <option value="automóvil">Automóvil</option>
+                <option value="moto">Moto</option>
+                <option value="otro">Otro</option>
+            </select>
+
+            <label>Nombre del Cliente</label>
+            <input type="text" name="nombre" required>
+
+            <label>Identificación</label>
+            <input type="text" name="identificacion">
+
+            <br><br>
+            <button class="btn btn-green" type="submit">Registrar Ingreso</button>
+
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

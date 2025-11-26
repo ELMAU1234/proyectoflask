@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de Control</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    background: #005bbb;
+    color: white;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CONTAINER */
+.container {
+    width: 85%;
+    margin: auto;
+    padding-top: 25px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
+    margin-bottom: 25px;
+}
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #005bbb;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    margin: 5px 2px;
+    font-size: 15px;
+}
+.btn-green { background: #2e8b57; }
+.btn-blue { background: #007bff; }
+.btn-yellow { background: #d4a017; }
+.btn-red { background: #c82333; }
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table th {
+    background: #005bbb;
+    color: white;
+    padding: 10px;
+}
+table td {
+    padding: 8px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div><strong>Estacionamiento Smart</strong></div>
+    <div>
+        <a href="/">Inicio</a>
+        <a href="/ingresar">Ingresar Vehículo</a>
+        <a href="/salida">Registrar Salida</a>
+        <a href="/reportes">Reportes</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-title">Panel de Control</div>
+        <p>Bienvenido, Asistente de Parqueo</p>
+
+        <a href="/ingresar"><button class="btn btn-green">Ingresar Vehículo</button></a>
+        <a href="/salida"><button class="btn btn-yellow">Registrar Salida</button></a>
+        <a href="/reportes"><button class="btn btn-blue">Ver Reportes</button></a>
+    </div>
+
+ <div class="card">
+    <div class="card-title">Estado del Parqueo</div>
+    <p><strong>Espacios libres:</strong> {{ libres }}</p>
+    <p><strong>Espacios ocupados:</strong> {{ ocupados }}</p>
+</div>
+
+<!-- NUEVA TABLA: ESTADO DETALLADO DE CADA ESPACIO -->
+<div class="card">
+    <div class="card-title">Lista de Espacios</div>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Estado</th>
+    </tr>
+    {% for e in espacios %}
+    <tr>
+        <td>{{ e[0] }}</td>
+        <td class="{{ e[1] }}">{{ e[1]|capitalize }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</div>
+
+
+    <div class="card">
+        <div class="card-title">Vehículos Dentro</div>
+
+        <table>
+            <tr>
+                <th>ID Registro</th>
+                <th>Placa</th>
+                <th>Tipo</th>
+                <th>Espacio</th>
+                <th>Ingreso</th>
+            </tr>
+
+            {% for v in activos %}
+            <tr>
+                <td>{{ v[0] }}</td>
+                <td>{{ v[1] }}</td>
+                <td>{{ v[2] }}</td>
+                <td>{{ v[3] }}</td>
+                <td>{{ v[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

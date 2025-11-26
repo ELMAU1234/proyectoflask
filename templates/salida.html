@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Salida</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f4f6f9;
+        }
+        .card {
+            width: 350px;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            background: #f3f3f3;
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
+        }
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #999;
+            margin-top: 5px;
+        }
+        .btn-yellow {
+            background: #f4c542;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .btn-yellow:hover {
+            background: #e0b234;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-size: 14px;
+            background: white;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background: #005bbb;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="card-title">Registrar Salida de Vehículo</div>
+
+    <form method="POST">
+        <label>Placa del Vehículo</label>
+        <input type="text" name="placa" required>
+
+        <button class="btn-yellow" type="submit">
+            Calcular y Registrar Pago
+        </button>
+    </form>
+</div>
+
+<!-- TABLA VEHÍCULOS DENTRO -->
+<div class="card" style="width: 90%; max-width: 600px;">
+    <div class="card-title">Vehículos Dentro</div>
+    <table>
+        <tr>
+            <th>ID Registro</th>
+            <th>Placa</th>
+            <th>Tipo</th>
+            <th>Espacio</th>
+            <th>Ingreso</th>
+        </tr>
+        {% for v in activos %}
+        <tr>
+            <td>{{ v[0] }}</td>
+            <td>{{ v[1] }}</td>
+            <td>{{ v[2] }}</td>
+            <td>{{ v[3] }}</td>
+            <td>{{ v[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
