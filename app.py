@@ -2,13 +2,21 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 import MySQLdb
 from datetime import datetime
 import math
+import os
 from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = "1234"
 
-db = MySQLdb.connect(host="localhost", user="root", passwd="", db="parque", charset="utf8")
 
+db = MySQLdb.connect(
+    host=os.environ.get("DB_HOST"),
+    user=os.environ.get("DB_USERNAME"),
+    passwd=os.environ.get("DB_PASSWORD"),
+    db=os.environ.get("DB_NAME"),
+    port=int(os.environ.get("DB_PORT", 3306)),
+    charset="utf8"
+)
 
 # DECORADOR LOGIN REQUIRED
 def login_required(f):
